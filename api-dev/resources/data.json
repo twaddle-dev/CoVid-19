@@ -1,0 +1,83 @@
+{
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "name": "gender",
+                    "type": "string"
+                },
+                {
+                    "name": "age",
+                    "type":"number"
+                },
+                {
+                    "name":"nationality",
+                    "type":"string"
+                },
+                {
+                    "name":"weight",
+                    "type":"number"
+                },
+                {
+                    "name":"location_latitude",
+                    "type":"number"
+                },
+                {
+                    "name":"location_longitude",
+                    "type":"number"
+                }
+            ],
+
+            "name": "setUser",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "getUser",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type":"number"
+                },
+                {
+                    "name":"",
+                    "type":"string"
+                },
+                {
+                    "name":"",
+                    "type":"number"
+                },
+                {
+                    "name":"",
+                    "type":"number"
+                },
+                {
+                    "name":"",
+                    "type":"number"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
+    "contract_address": "add here the address of ur smart contract deployed in the etherum block."
+}
