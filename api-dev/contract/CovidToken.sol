@@ -1,75 +1,64 @@
 /**
  * This file has 2 contracts: tokenRecipient and MyToken
- * and is reproduced directly from https://www.ethereum.org/token
- */
-contract tokenRecipient { 
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); 
-}
+*/
 
-contract MyToken { 
-    /* Public variables of the token */
-    string public name;
-    string public symbol;
-    string public version;
-    uint8 public decimals;
-    uint256 public totalSupply;
 
-    /* This creates an array with all balances */
-    mapping (address => uint256) public balanceOf;
-    mapping (address => mapping (address => uint256)) public allowance;
-    mapping (address => mapping (address => uint256)) public spentAllowance;
+pragma solidity >=0.4.21;
 
-    /* This generates a public event on the blockchain that will notify clients */
-    event Transfer(address indexed from, address indexed to, uint256 value);
+// import library file
+import "api-dev/contract/stringUtils.sol";
 
-    /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(
-        uint256 initialSupply, 
-        string tokenName, 
-        uint8 decimalUnits, 
-        string tokenSymbol, 
-        string versionOfTheCode
-        ) {
-        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens                    
-        totalSupply = initialSupply;                        // Update total supply
-        name = tokenName;                                   // Set the name for display purposes     
-        symbol = tokenSymbol;                               // Set the symbol for display purposes    
-        decimals = decimalUnits;                            // Amount of decimals for display purposes        
-        version = versionOfTheCode;
+
+
+contract CovidToken { 
+    // / Public variables of the token */
+    // enum type variable to store user gender
+    enum genderType{ male, female}
+    
+    // Actual user object which we will store.
+    struct user{
+        string name;
+        string nationality;
+        genderType gender;
+        int age;
+        int weight;
+        int location_latitude;
+        int location_longitude;
     }
 
-    /* Send coins */
-    function transfer(address _to, uint256 _value) {
-        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough   
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-        balanceOf[_to] += _value;                            // Add the same to the recipient            
-        Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
+    // user object
+    user user_obj;
+    
+    //Internal function to conver genderType enum from string
+    function getGenderFromString(string gender) internal returns   (genderType) {
+        if(StringUtils.equal(gender, "male")) {
+            return genderType.male;
+        } else {
+        return genderType.female;
+        }
+    }
+    
+    //Internal function to convert genderType enum to string
+    function getGenderToString(genderType gender) internal returns (string) {
+        if(gender == genderType.male) {
+            return "male";
+        } else {
+            return "female";
+    }
     }
 
-    /* Allow another contract to spend some tokens in your behalf */
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) 
-        returns (bool success) {
-        allowance[msg.sender][_spender] = _value;     
-        tokenRecipient spender = tokenRecipient(_spender);
-        spender.receiveApproval(msg.sender, _value, this, _extraData); 
-        return true; 
+
+    // set user public function
+    // This is similar to persisting object in db.
+    function setUser(string name, string gender, int age, int weight, int location_latitude, int location_longitude) public {
+        genderType gender_type = getGenderFromString(gender);
+        user_obj = user({name:name, gender: gender_type});
     }
-
-    /* A contract attempts to get the coins */
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-        if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough   
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-        if (spentAllowance[_from][msg.sender] + _value > allowance[_from][msg.sender]) throw;   // Check allowance
-        balanceOf[_from] -= _value;                          // Subtract from the sender
-        balanceOf[_to] += _value;                            // Add the same to the recipient            
-        spentAllowance[_from][msg.sender] += _value;
-        Transfer(_from, _to, _value); 
-        return true;
-    } 
-
-    /* This unnamed function is called whenever someone tries to send ether to it */
-    function () {
-        throw;     // Prevents accidental sending of ether
-    }        
+  
+    // get user public function
+    // This is similar to getting object from db.
+    function getUser() public returns (string, string,int , int, int,int) {
+        return (user_obj.name, getGenderToString(user_obj.gender));
+    }
+  
 }     
