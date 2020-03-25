@@ -11,7 +11,22 @@ contract CoHelpToken {
         uint age;
         uint weight;
     }
-    
+    user user_obj;
+        // set user public function
+    // This is similar to persisting object in db.
+    function setUser(address UserAddress, string location_latitude, string location_longitude, uint age, uint weight) public {
+        user_obj = user({
+            UserAddress:UserAddress, location_latitude:location_latitude, location_longitude:location_longitude, age:age, weight:weight
+        });
+    }
+
+    // get user public function
+    // This is similar to getting object from db.
+    function getUser() public returns (string, string) {
+        return (
+            user_obj.UserAddress, user_obj.location_latitude, user_obj.location_longitude, user_obj.age, user_obj.weight
+        );
+    }
     mapping(address => uint) public balances;
 
     // Events allow clients to react to specific
