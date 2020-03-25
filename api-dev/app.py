@@ -3,8 +3,6 @@ from flask_restful import Api
 
 from resources.user import UserRegister
 
-
-
 '''This is section 4 app.py file.'''
 app = Flask(__name__)
 api = Api(app)
