@@ -78,4 +78,25 @@
         app:layout_constraintTop_toBottomOf="@id/btn_give_help"
         app:countdownTextSize="24sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_helper_details"
+        android:fontFamily="@font/poppins"
+        android:textAlignment="center"
+        android:letterSpacing="0.01"
+        android:lineSpacingMultiplier="1"
+        android:textColor="#ff888786"
+        android:textScaleX="1"
+        android:text="Narendra Modi will help you to get your product\nContact him (100) to share your puchasing list"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_give_help"
+        android:visibility="gone"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

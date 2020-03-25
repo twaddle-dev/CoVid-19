@@ -27,6 +27,7 @@ public class LocationAddress {
                             latitude, longitude, 1);
                     if (addressList != null && addressList.size() > 0) {
                         Address address = addressList.get(0);
+                        Log.i( TAG, "run: address= " + address);
                         StringBuilder sb = new StringBuilder();
                         for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                             sb.append(address.getAddressLine(i)).append("\n");
@@ -41,21 +42,12 @@ public class LocationAddress {
                 } finally {
                     Message message = Message.obtain();
                     message.setTarget(handler);
-                    if (result != null) {
-                        message.what = 1;
-                        Bundle bundle = new Bundle();
-                        result = "Latitude: " + latitude + " Longitude: " + longitude +
-                                "\n\nAddress:\n" + result;
-                        bundle.putString("address", result);
-                        message.setData(bundle);
-                    } else {
-                        message.what = 1;
-                        Bundle bundle = new Bundle();
-                        result = "Latitude: " + latitude + " Longitude: " + longitude +
-                                "\n Unable to get address for this lat-long.";
-                        bundle.putString("address", result);
-                        message.setData(bundle);
-                    }
+                    message.what = 1;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("address", result);
+                    bundle.putDouble("latitude" , latitude);
+                    bundle.putDouble("longitude" , longitude);
+                    message.setData(bundle);
                     message.sendToTarget();
                 }
             }

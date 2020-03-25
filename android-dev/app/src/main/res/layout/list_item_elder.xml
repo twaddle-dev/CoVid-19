@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:divider="@android:color/white"
+    android:dividerHeight="0.0px"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true"
+    card_view:cardPreventCornerOverlap="false"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_weight="0.25"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|start"
+                    android:background="@drawable/circle_bg"
+                    android:gravity="center"
+                    android:text="N"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/elder_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Narendra Modi"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/elder_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingMultiplier="1"
+                    android:text="300m Away"
+                    android:textSize="12dp"
+                    android:textAlignment="center"
+                    android:textColor="#ff888786"
+                    android:textScaleX="1" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/elder_item"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:visibility="invisible"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Medicine"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="17dp"
+                app:rippleColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_deny_help"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="100dp"
+                android:layout_height="47dp"
+                android:layout_alignParentStart="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Deny"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTitle"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/colorPrimaryDark" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_accept_help"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="100dp"
+                android:layout_height="47dp"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textFontWeight="600"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/colorPrimaryDark" />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

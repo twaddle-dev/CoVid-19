@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1046679305987",
+    "firebase_url": "https://twaddle-covid19.firebaseio.com",
+    "project_id": "twaddle-covid19",
+    "storage_bucket": "twaddle-covid19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046679305987:android:510ba4cd3b54709b6c7336",
+        "android_client_info": {
+          "package_name": "com.twaddle.covid19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046679305987-em6k20merptteq0gtgf8aub9pnc6deik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.twaddle.covid19",
+            "certificate_hash": "faf0fdaae7b7c2cded669cea552a6bcaf326284d"
+          }
+        },
+        {
+          "client_id": "1046679305987-oi8thn18ach6emvqhqs9jh4rs44hi2vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT4SZrOCZeXXMw_hfsdad69OZwFErITEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046679305987-oi8thn18ach6emvqhqs9jh4rs44hi2vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
