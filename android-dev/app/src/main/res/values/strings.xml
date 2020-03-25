@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Covid19</string>
+    <string-array name="purchase_items">
+        <item>Medicine</item>
+        <item>Grocery</item>
+        <item>Food</item>
+    </string-array>
+</resources>

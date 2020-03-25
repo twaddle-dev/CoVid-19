@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_give_help"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
+        android:text="Going out"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textFontWeight="600"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="60dp"
+        app:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#13ad2a" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_want_help"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
+        android:text="Want help"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textFontWeight="600"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="60dp"
+        app:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#13ad2a" />
+
+
+    <douglasspgyn.com.github.circularcountdown.CircularCountdown
+        android:id="@+id/circularCountdownMin"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:countdownBackgroundColor="@color/colorAccent"
+        app:countdownForegroundColor="@color/colorPrimary"
+        app:countdownTextColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/circularCountdownSec"
+        app:layout_constraintTop_toBottomOf="@id/btn_give_help"
+        app:countdownTextSize="24sp" />
+
+    <douglasspgyn.com.github.circularcountdown.CircularCountdown
+        android:id="@+id/circularCountdownSec"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:countdownBackgroundColor="@color/colorAccent"
+        app:countdownForegroundColor="@color/colorPrimary"
+        app:countdownTextColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/circularCountdownMin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_give_help"
+        app:countdownTextSize="24sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
