@@ -9,14 +9,7 @@ from resources.user import UserRegister
 app = Flask(__name__)
 api = Api(app)
 
-
-
-
-
-
 api.add_resource(UserRegister, '/user/<string:name>')
-
-
 
 # Name is only set to main when file is explicitly run (not on imports):
 if __name__ == '__main__':
