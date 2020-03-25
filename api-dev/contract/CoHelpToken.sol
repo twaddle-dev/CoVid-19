@@ -1,9 +1,5 @@
 pragma solidity >=0.5.8;
 
-import "api-dev/dapp/library/math.sol";
-import "api-dev/dapp/library/features.sol";
-import "api-dev/dapp/library/iterable_mapping.sol";
-import "api-dev/dapp/library/linkedList.sol";
 import "api-dev/dapp/library/stringUtils.sol";
 
 contract CoHelpToken {

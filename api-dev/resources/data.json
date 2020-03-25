@@ -8,16 +8,8 @@
                     "type": "string"
                 },
                 {
-                    "name": "gender",
-                    "type": "string"
-                },
-                {
                     "name": "age",
                     "type":"number"
-                },
-                {
-                    "name":"nationality",
-                    "type":"string"
                 },
                 {
                     "name":"weight",
@@ -25,11 +17,11 @@
                 },
                 {
                     "name":"location_latitude",
-                    "type":"number"
+                    "type":"string"
                 },
                 {
                     "name":"location_longitude",
-                    "type":"number"
+                    "type":"string"
                 }
             ],
 
@@ -51,10 +43,10 @@
                 },
                 {
                     "name": "",
-                    "type": "string"
+                    "type":"number"
                 },
                 {
-                    "name": "",
+                    "name":"",
                     "type":"number"
                 },
                 {
@@ -63,15 +55,7 @@
                 },
                 {
                     "name":"",
-                    "type":"number"
-                },
-                {
-                    "name":"",
-                    "type":"number"
-                },
-                {
-                    "name":"",
-                    "type":"number"
+                    "type":"string"
                 }
             ],
             "payable": false,
