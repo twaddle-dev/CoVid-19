@@ -79,6 +79,6 @@ def commodity(mint_amount, reward):
     # Wait for transaction to be mined...
     w3.eth.waitForTransactionReceipt(tx_hash)
 
-    user_data = user.functions.getUser().call()
-    return jsonify({"data": user_data}), 200
+    
+    return jsonify({"message": "Transaction successful"}), 200
 

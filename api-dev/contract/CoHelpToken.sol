@@ -36,13 +36,13 @@ contract CoHelpToken {
     // Constructor code is only run when the contract
     // is created
     constructor() public {
-        user.UserAddress = msg.sender;
+        user_obj.UserAddress = msg.sender;
     }
 
     // Sends an amount of newly created coins to an address
     // Can only be called by the contract creator
     function mint(address receiver, uint amount) public {
-        require(msg.sender == user.UserAddress);
+        require(msg.sender == user_obj.UserAddress);
         require(amount < 1e60);
         balances[receiver] += amount;
     }
