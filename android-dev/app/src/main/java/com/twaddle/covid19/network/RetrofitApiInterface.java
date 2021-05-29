@@ -1,11 +1,13 @@
 package com.twaddle.covid19.network;
 
 import com.google.gson.JsonObject;
+import com.twaddle.covid19.model.Book;
 import com.twaddle.covid19.model.UserDetails;
 import com.twaddle.covid19.model.WantHelpElder;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RetrofitApiInterface {
@@ -17,4 +19,7 @@ public interface RetrofitApiInterface {
 
     @POST("want_help")
     Call<UserDetails> sendWantHelpRequest(@Body WantHelpElder wantHelpElder);
+
+    @GET("books")
+    Call<Book> getBooks();
 }

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationRequest;
@@ -30,7 +32,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.twaddle.covid19.R;
-import com.twaddle.covid19.databinding.ActivityUserInfoBinding;
 import com.twaddle.covid19.model.UserDetails;
 import com.twaddle.covid19.network.RetrofitApiInterface;
 import com.twaddle.covid19.services.LocationAddress;
@@ -50,7 +51,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class UserInfoActivity extends AppCompatActivity {
     @Inject
     Retrofit retrofit;
-
+    private boolean isAddress = false;
     private static final int PERMISSION_REQUEST_CODE = 200;
     private static final String TAG = "UserInfoActivity";
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
@@ -58,6 +59,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private UserDetails userDetails;
     private double latitude,longitude;
+    private SwipeRefreshLayout swipeRefreshLayout;
     EditText et_address;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,15 +71,21 @@ public class UserInfoActivity extends AppCompatActivity {
             requestPermission();
         }
         final EditText et_name = findViewById( R.id.et_name );
+        swipeRefreshLayout = findViewById( R.id.swipeContainer );
         final EditText et_age = findViewById( R.id.et_age );
-        et_age.setText( String.valueOf( 7 ) );
+        final ImageView iv_current_location = findViewById( R.id.get_current_location );
+        iv_current_location.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEnableLocationSetting( UserInfoActivity.this );
+                swipeRefreshLayout.setRefreshing( true );
+            }
+        } );
         et_address = findViewById( R.id.et_address );
         Button btn_next = findViewById( R.id.btn_user_info_next );
         btn_next.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                showEnableLocationSetting( UserInfoActivity.this );
-//
                 userDetails = new UserDetails( firebaseAuth.getCurrentUser().getUid() ,
                         firebaseAuth.getCurrentUser().getEmail(),
                         et_name.getText().toString(),
@@ -88,6 +96,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 createUserDetails();
                 Intent intent = new Intent( UserInfoActivity.this, MainActivity.class );
                 startActivity( intent );
+                finish();
             }
         } );
 
@@ -105,13 +114,14 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 LocationSettingsStates states = locationSettingsResponse.getLocationSettingsStates();
                 if(states.isLocationPresent()){
-                    Log.i( TAG, "onSuccess: " );
                     startService( new Intent( UserInfoActivity.this, LocationTrack.class ) );
-                    try {
-                        Thread.sleep( 1000 );
-                    } catch (InterruptedException e) {
-                    }
-                    getGPSLocation();
+                    final Handler handler = new Handler();
+                    handler.postDelayed( new Runnable() {
+                        @Override
+                        public void run() {
+                            getGPSLocation();
+                        }
+                    }, 3000 );
                 }
             }
         } );
@@ -135,11 +145,13 @@ public class UserInfoActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             Log.i( TAG, "onActivityResult: " );
             startService( new Intent( UserInfoActivity.this, LocationTrack.class ) );
-            try {
-                Thread.sleep( 1000 );
-            } catch (InterruptedException e) {
-            }
-            getGPSLocation();
+            final Handler handler = new Handler();
+            handler.postDelayed( new Runnable() {
+                @Override
+                public void run() {
+                    getGPSLocation();
+                }
+            }, 3000 );
         }
     }
 
@@ -151,22 +163,22 @@ public class UserInfoActivity extends AppCompatActivity {
         else{
             Log.i( TAG, "getGPSLocation:  0 location" );
         }
-//        final Handler handler = new Handler();
-//        final Runnable r = new Runnable() {
-//            public void run() {
-//                Log.i( TAG, "run: " );
-//                if (locationTrack.getLatitude() != 0 && locationTrack.getLongitude() != 0) {
-//                    Log.i( TAG, "run: non 0 location" );
-//                    LocationAddress.getAddressFromLocation( locationTrack.getLatitude() , locationTrack.getLongitude(),
-//                            UserInfoActivity.this , new GeocoderHandler());
-//                } else {
-//                    locationTrack = new LocationTrack();
-//                }
-//                handler.postDelayed( this, 10000 );
-//            }
-//
-//        };
-//        handler.postDelayed( r, 10000 );
+        final Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                Log.i( TAG, "run: " );
+                if (locationTrack.getLatitude() != 0 && locationTrack.getLongitude() != 0) {
+                    Log.i( TAG, "run: non 0 location" );
+                    LocationAddress.getAddressFromLocation( locationTrack.getLatitude(), locationTrack.getLongitude(),
+                            UserInfoActivity.this, new GeocoderHandler() );
+                } else {
+                    locationTrack = new LocationTrack();
+                }
+                handler.postDelayed( this, 10000 );
+            }
+
+        };
+        handler.postDelayed( r, 10000 );
 
     }
 
@@ -215,16 +227,16 @@ public class UserInfoActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message message) {
             String locationAddress;
-            switch (message.what) {
-                case 1:
-                    Bundle bundle = message.getData();
-                    locationAddress = bundle.getString("address");
-                    break;
-                default:
-                    locationAddress = null;
+            if (message.what == 1) {
+                Bundle bundle = message.getData();
+                locationAddress = bundle.getString( "address" );
+            } else {
+                locationAddress = null;
             }
-            Log.i( TAG, "handleMessage: location=" + locationAddress );
-            et_address.setText( locationAddress );
+            if (!isAddress)
+                et_address.setText( locationAddress );
+            isAddress = true;
+            swipeRefreshLayout.setRefreshing( false );
         }
     }
 }

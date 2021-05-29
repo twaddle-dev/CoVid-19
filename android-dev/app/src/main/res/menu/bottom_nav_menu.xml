@@ -4,12 +4,12 @@
     <item
         android:id="@+id/navigation_tab1"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Tab 1" />
+        android:title="Track" />
 
     <item
         android:id="@+id/navigation_tab2"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Tab 2" />
+        android:icon="@drawable/ic_accessible_black_24dp"
+        android:title="Co-help" />
 
 <!--    <item-->
 <!--        android:id="@+id/navigation_tab3"-->

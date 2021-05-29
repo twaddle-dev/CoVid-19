@@ -39,6 +39,8 @@ public class EldersListAdapter extends RecyclerView.Adapter<EldersListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final Elder elder = eldersList.get( position );
+        holder.tv_icon_name.setText( String.valueOf( elder.getName().charAt( 0 ) ));
+        Log.i( TAG, "onBindViewHolder: "+ String.valueOf( elder.getName().charAt( 0 ) ));
         holder.tv_elderItem.setText( elder.getItem() );
         holder.tv_elderAddress.setText( elder.getAddress() );
         holder.tv_elderName.setText( elder.getName() );
@@ -60,7 +62,6 @@ public class EldersListAdapter extends RecyclerView.Adapter<EldersListAdapter.Vi
                 notifyItemRangeChanged( position , eldersList.size() );
                 notifyDataSetChanged();
                 Log.i( TAG, "onClick: accept" );
-
             }
         } );
     }
@@ -80,8 +81,10 @@ public class EldersListAdapter extends RecyclerView.Adapter<EldersListAdapter.Vi
         public TextView tv_elderItem;
         public Button btn_accept;
         public Button btn_deny;
+        public TextView tv_icon_name;
         public ViewHolder(@NonNull View itemView) {
             super( itemView );
+            tv_icon_name = itemView.findViewById( R.id.icon_name_text );
             tv_elderItem = itemView.findViewById( R.id.elder_item );
             tv_elderName = itemView.findViewById( R.id.elder_name );
             tv_elderAddress = itemView.findViewById( R.id.elder_address );

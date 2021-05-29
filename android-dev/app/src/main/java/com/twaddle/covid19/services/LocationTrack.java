@@ -86,7 +86,9 @@ public class LocationTrack extends Service {
             stopSelf();
             return START_NOT_STICKY;
         }
-
+        startPeriodicLocationUpdate();
+        startPeriodicLocationUpdateForHomeCheck();
+        checkIfPresentInHome();
         if(intent != null) {
             if (Objects.equals( intent.getAction(), "currentLocation" )) {
                 startPeriodicLocationUpdate();

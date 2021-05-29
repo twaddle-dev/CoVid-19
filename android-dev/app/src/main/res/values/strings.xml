@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covid19</string>
+    <string name="app_name">Co-Help</string>
     <string name="server_client_id_for_firebase_auth">1046679305987-oi8thn18ach6emvqhqs9jh4rs44hi2vp.apps.googleusercontent.com</string>
     <string name="default_notification_channel_id">CoronaLocationAlerts</string>
     <string name="fcm_message">Alert</string>

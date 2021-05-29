@@ -16,7 +16,7 @@ public class MainEmptyActivity extends AppCompatActivity {
         Intent activityIntent;
 
         if (new PrefManager(getApplicationContext()).isFirstTimeLaunch()) {
-            activityIntent = new Intent(this, WelcomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            activityIntent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         } else {
             activityIntent = new Intent(this, MainActivity.class);
         }

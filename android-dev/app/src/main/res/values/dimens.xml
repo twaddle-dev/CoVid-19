@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="til_horizontal_margin">32dp</dimen>
-    <dimen name="til_top_margin">8dp</dimen>
+    <dimen name="til_top_margin">12dp</dimen>
+    <dimen name="dimen_location_text">16sp</dimen>
 </resources>

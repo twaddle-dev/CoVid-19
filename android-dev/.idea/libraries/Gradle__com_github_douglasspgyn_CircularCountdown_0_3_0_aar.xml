@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.douglasspgyn:CircularCountdown:0.3.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/02ee8080bb2e95a6281f3eb7423fc2e9/jetified-CircularCountdown-0.3.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/02ee8080bb2e95a6281f3eb7423fc2e9/jetified-CircularCountdown-0.3.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/918ec439f9991bc05cd38623f250f7d5/jetified-CircularCountdown-0.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/918ec439f9991bc05cd38623f250f7d5/jetified-CircularCountdown-0.3.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

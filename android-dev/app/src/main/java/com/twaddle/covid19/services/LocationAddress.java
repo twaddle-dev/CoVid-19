@@ -35,7 +35,7 @@ public class LocationAddress {
                         sb.append(address.getLocality()).append("\n");
                         sb.append(address.getPostalCode()).append("\n");
                         sb.append(address.getCountryName());
-                        result = sb.toString();
+                        result = address.getAddressLine( 0 );
                     }
                 } catch (IOException e) {
                     Log.e(TAG, "Unable connect to Geocoder", e);
